@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telecom STC - Offers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fa;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 50px;
+    background: #4B0082;
+    color: white;
+}
+
+.navbar h2 {
+    margin: 0;
+}
+
+.navbar a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(to right, #4B0082, #8A2BE2);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 40px;
+}
+
+.hero p {
+    font-size: 18px;
+}
+
+/* Plans */
+.plans {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 50px;
+    flex-wrap: wrap;
+}
+
+.plan-card {
+    background: white;
+    padding: 30px;
+    width: 280px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.plan-card h2 {
+    color: #4B0082;
+}
+
+.price {
+    font-size: 30px;
+    margin: 15px 0;
+}
+
+.btn {
+    background: #4B0082;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Footer */
+.footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2>STC Telecom</h2>
+    <div>
+        <a href="#">Home</a>
+        <a href="#">Plans</a>
+        <a href="#">Contact</a>
+    </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+    <h1>Welcome to STC Telecom</h1>
+    <p>Best Internet & Mobile Plans in Saudi Arabia</p>
+</div>
+
+<!-- Plans -->
+<div class="plans">
+
+    <div class="plan-card">
+        <h2>Basic</h2>
+        <p>1GB/day</p>
+        <div class="price">SAR 50</div>
+        <button class="btn">Buy Now</button>
+    </div>
+
+    <div class="plan-card">
+        <h2>Standard</h2>
+        <p>2GB/day</p>
+        <div class="price">SAR 100</div>
+        <button class="btn">Buy Now</button>
+    </div>
+
+    <div class="plan-card">
+        <h2>Premium</h2>
+        <p>Unlimited Data</p>
+        <div class="price">SAR 200</div>
+        <button class="btn">Buy Now</button>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>© 2026 STC Telecom. All rights reserved.</p>
+</div>
+
+</body>
+</html>
