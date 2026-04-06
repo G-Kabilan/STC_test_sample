@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STC Telecom</title>
+<title>STC NextGen</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -11,36 +11,29 @@
 body {
     margin:0;
     font-family:'Poppins',sans-serif;
-    background:#f5f7fa;
+    background:#0f172a;
+    color:white;
 }
 
 /* NAVBAR */
 .navbar {
     display:flex;
     justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
-    background:#4B0082;
-    color:white;
+    padding:20px 50px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
 }
 
-.nav-left {
+.logo {
     font-size:22px;
     font-weight:bold;
+    color:#a78bfa;
 }
 
 .nav-right {
     display:flex;
+    gap:25px;
     align-items:center;
-    gap:20px;
-}
-
-.nav-right span {
-    cursor:pointer;
-}
-
-.nav-right span:hover {
-    text-decoration:underline;
 }
 
 .profile {
@@ -51,109 +44,100 @@ body {
 
 .profile img {
     width:35px;
-    height:35px;
     border-radius:50%;
 }
 
 /* HERO */
 .hero {
-    background:linear-gradient(to right,#4B0082,#8A2BE2);
-    color:white;
-    text-align:center;
-    padding:80px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:80px;
+}
+
+.hero-text {
+    max-width:500px;
 }
 
 .hero h1 {
-    font-size:40px;
+    font-size:42px;
 }
 
 .hero button {
-    margin-top:20px;
     padding:12px 25px;
-    background:white;
-    color:#4B0082;
+    background:#7c3aed;
     border:none;
     border-radius:25px;
+    color:white;
     cursor:pointer;
-    font-weight:bold;
 }
 
-/* FEATURES */
-.features {
+/* PRODUCT SIDEBAR */
+.products {
     display:flex;
-    justify-content:center;
-    gap:25px;
     padding:40px;
+}
+
+.sidebar {
+    width:200px;
+}
+
+.sidebar div {
+    padding:15px;
+    margin:10px 0;
+    background:#1e293b;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.sidebar div:hover {
+    background:#7c3aed;
+}
+
+.plans {
+    flex:1;
+    display:flex;
+    gap:20px;
     flex-wrap:wrap;
+    justify-content:center;
 }
 
-.feature {
-    background:white;
-    padding:20px;
-    width:220px;
-    text-align:center;
-    border-radius:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
-
-/* SECTION */
-.section {
-    text-align:center;
-    padding:40px;
-}
-
-/* CARDS */
+/* PLAN CARD */
 .card {
-    display:inline-block;
-    background:white;
+    background:#1e293b;
     padding:20px;
-    margin:15px;
+    border-radius:15px;
     width:250px;
-    border-radius:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    text-align:center;
+    transition:0.3s;
 }
 
-/* BUTTON */
+.card:hover {
+    transform:scale(1.05);
+}
+
 button {
     padding:10px 15px;
-    background:#4B0082;
-    color:white;
+    background:#7c3aed;
     border:none;
     border-radius:20px;
-    cursor:pointer;
+    color:white;
 }
 
-button:hover {
-    opacity:0.9;
-}
-
-/* HIDDEN */
-.hidden {
-    display:none;
-}
-
-/* MODAL */
-.modal {
+/* PAYMENT PANEL */
+.payment {
     display:none;
     position:fixed;
+    right:0;
     top:0;
-    left:0;
-    width:100%;
+    width:350px;
     height:100%;
-    background:rgba(0,0,0,0.6);
-}
-
-.modal-content {
-    background:white;
-    width:320px;
-    margin:8% auto;
-    padding:25px;
-    border-radius:10px;
-    text-align:center;
+    background:#111827;
+    padding:20px;
 }
 
 input {
-    width:90%;
+    width:100%;
     padding:8px;
     margin:5px 0;
 }
@@ -164,174 +148,128 @@ input {
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <div class="nav-left">STC Telecom</div>
+    <div class="logo">STC NextGen</div>
 
     <div class="nav-right">
-        <span>Home</span>
-        <span>Plans</span>
-        <span>Support</span>
+        <span>Services</span>
+        <span>Offers</span>
 
         <div class="profile">
             <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
-            <span>Hi, User</span>
+            <span>User</span>
         </div>
     </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-    <h1>Experience Next-Gen Connectivity</h1>
-    <p>Fast. Reliable. Affordable Telecom Services</p>
-    <button onclick="scrollToPlans()">Explore Plans</button>
-</div>
+    <div class="hero-text">
+        <h1>Future of Telecom Starts Here</h1>
+        <p>Ultra-fast connectivity with next-gen digital services</p>
+        <button onclick="scrollToProducts()">Get Started</button>
+    </div>
 
-<!-- FEATURES -->
-<div class="features">
-    <div class="feature">
-        <h3>⚡ Fast Internet</h3>
-        <p>High-speed connectivity</p>
-    </div>
-    <div class="feature">
-        <h3>📞 Unlimited Calls</h3>
-        <p>Talk without limits</p>
-    </div>
-    <div class="feature">
-        <h3>💰 Best Prices</h3>
-        <p>Affordable plans</p>
-    </div>
-    <div class="feature">
-        <h3>🌍 Global Coverage</h3>
-        <p>Stay connected worldwide</p>
+    <div>
+        <h2>🚀 5G Ready</h2>
     </div>
 </div>
 
 <!-- PRODUCTS -->
-<div class="section" id="mainProducts">
-    <h2>Select Product</h2>
+<div class="products" id="products">
 
-    <div class="card">
-        <h3>Mobile Plans</h3>
-        <button onclick="showPlans('mobile')">Explore</button>
+    <div class="sidebar">
+        <div onclick="loadPlans('mobile')">📱 Mobile</div>
+        <div onclick="loadPlans('fiber')">🌐 Fiber</div>
+        <div onclick="loadPlans('business')">🏢 Business</div>
     </div>
 
-    <div class="card">
-        <h3>Internet Packages</h3>
-        <button onclick="showPlans('internet')">Explore</button>
+    <div class="plans" id="plans">
+        <p>Select a category</p>
     </div>
-</div>
 
-<!-- PLANS -->
-<div class="section hidden" id="plansSection">
-    <h2>Select Your Plan</h2>
-    <div id="plans"></div>
-    <br>
-    <button onclick="goBack()">⬅ Back</button>
 </div>
 
 <!-- PAYMENT -->
-<div id="paymentModal" class="modal">
-    <div class="modal-content">
-        <h2>Payment</h2>
+<div class="payment" id="payment">
+    <h2>Checkout</h2>
 
-        <p id="selectedPlan"></p>
-        <p id="selectedPrice"></p>
+    <p id="plan"></p>
+    <p id="price"></p>
 
-        <input id="promo" placeholder="Enter Promo Code">
-        <button onclick="applyPromo()">Apply Promo</button>
-        <p id="discountMsg"></p>
+    <input id="promo" placeholder="Promo Code">
+    <button onclick="applyPromo()">Apply</button>
+    <p id="msg"></p>
 
-        <br>
+    <input placeholder="Card Number">
+    <input placeholder="Expiry">
+    <input placeholder="CVV">
 
-        <input placeholder="Card Number">
-        <input placeholder="Expiry">
-        <input placeholder="CVV">
-
-        <button onclick="pay()">Pay Now</button><br><br>
-        <button onclick="closeModal()">Cancel</button>
-    </div>
+    <button onclick="pay()">Pay Now</button>
 </div>
 
 <script>
 
-let currentPrice = 0;
+let price = 0;
 
-function scrollToPlans(){
-    document.getElementById("mainProducts").scrollIntoView({behavior:"smooth"});
+function scrollToProducts(){
+    document.getElementById("products").scrollIntoView({behavior:"smooth"});
 }
 
-function showPlans(type){
-    document.getElementById("mainProducts").classList.add("hidden");
-    document.getElementById("plansSection").classList.remove("hidden");
-
+function loadPlans(type){
     let html = "";
 
     if(type==="mobile"){
-        html = `
+        html=`
         <div class="card">
-            <h3>Basic Mobile</h3>
-            <p>1GB/day</p>
-            <p>SAR 50</p>
-            <button onclick="buy('Basic Mobile',50)">Select</button>
+            <h3>Starter</h3>
+            <p>SAR 40</p>
+            <button onclick="buy('Starter',40)">Choose</button>
         </div>
-
         <div class="card">
-            <h3>Premium Mobile</h3>
-            <p>Unlimited</p>
-            <p>SAR 120</p>
-            <button onclick="buy('Premium Mobile',120)">Select</button>
+            <h3>Unlimited Pro</h3>
+            <p>SAR 130</p>
+            <button onclick="buy('Unlimited Pro',130)">Choose</button>
         </div>`;
-    } else {
-        html = `
+    }
+    else if(type==="fiber"){
+        html=`
         <div class="card">
-            <h3>Fiber Basic</h3>
-            <p>100 Mbps</p>
-            <p>SAR 200</p>
-            <button onclick="buy('Fiber Basic',200)">Select</button>
-        </div>
-
+            <h3>Fiber Lite</h3>
+            <p>SAR 180</p>
+            <button onclick="buy('Fiber Lite',180)">Choose</button>
+        </div>`;
+    }
+    else {
+        html=`
         <div class="card">
-            <h3>Fiber Pro</h3>
-            <p>500 Mbps</p>
-            <p>SAR 350</p>
-            <button onclick="buy('Fiber Pro',350)">Select</button>
+            <h3>Enterprise Pack</h3>
+            <p>SAR 500</p>
+            <button onclick="buy('Enterprise',500)">Choose</button>
         </div>`;
     }
 
     document.getElementById("plans").innerHTML = html;
 }
 
-function goBack(){
-    document.getElementById("plansSection").classList.add("hidden");
-    document.getElementById("mainProducts").classList.remove("hidden");
-}
+function buy(p, pr){
+    price = pr;
+    document.getElementById("plan").innerText = "Plan: " + p;
+    document.getElementById("price").innerText = "Price: SAR " + pr;
 
-function buy(plan, price){
-    currentPrice = price;
-    document.getElementById("selectedPlan").innerText = "Plan: " + plan;
-    document.getElementById("selectedPrice").innerText = "Price: SAR " + price;
-    document.getElementById("paymentModal").style.display = "block";
+    document.getElementById("payment").style.display="block";
 }
 
 function applyPromo(){
-    let code = document.getElementById("promo").value;
-
-    if(code==="STC10"){
-        currentPrice = currentPrice * 0.9;
-        document.getElementById("discountMsg").innerText =
-        "Promo Applied! New Price: SAR " + currentPrice;
+    if(document.getElementById("promo").value==="NEXT20"){
+        price *= 0.8;
+        document.getElementById("msg").innerText="20% Discount Applied!";
     } else {
-        document.getElementById("discountMsg").innerText =
-        "Invalid Promo Code";
+        document.getElementById("msg").innerText="Invalid Code";
     }
 }
 
-function closeModal(){
-    document.getElementById("paymentModal").style.display="none";
-}
-
 function pay(){
-    alert("Payment Successful ✅");
-    closeModal();
+    alert("Payment Successful 🚀");
 }
 
 </script>
