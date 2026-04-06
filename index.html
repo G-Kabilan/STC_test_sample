@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STC Telecom</title>
+<title>STC NextGen</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -55,23 +55,6 @@ body {
     padding:80px;
 }
 
-.hero-text {
-    max-width:500px;
-}
-
-.hero h1 {
-    font-size:42px;
-}
-
-.hero button {
-    padding:12px 25px;
-    background:#7c3aed;
-    border:none;
-    border-radius:25px;
-    color:white;
-    cursor:pointer;
-}
-
 /* PRODUCTS */
 .products {
     display:flex;
@@ -102,18 +85,13 @@ body {
     justify-content:center;
 }
 
-/* PLAN CARD */
+/* CARDS */
 .card {
     background:#1e293b;
     padding:20px;
     border-radius:15px;
     width:250px;
     text-align:center;
-    transition:0.3s;
-}
-
-.card:hover {
-    transform:scale(1.05);
 }
 
 button {
@@ -135,17 +113,15 @@ button {
     height:100%;
     background:#111827;
     padding:20px;
-    box-shadow:-5px 0 15px rgba(0,0,0,0.5);
-    animation: slideIn 0.3s ease;
+    animation:slideIn 0.3s;
 }
 
-/* Animation */
 @keyframes slideIn {
     from { right:-350px; }
     to { right:0; }
 }
 
-input {
+input, select {
     width:100%;
     padding:8px;
     margin:5px 0;
@@ -159,7 +135,7 @@ input {
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <div class="logo">STC Telecom</div>
+    <div class="logo">STC NextGen</div>
 
     <div class="nav-right">
         <span>Services</span>
@@ -174,15 +150,12 @@ input {
 
 <!-- HERO -->
 <div class="hero">
-    <div class="hero-text">
+    <div>
         <h1>Future of Telecom Starts Here</h1>
         <p>Ultra-fast connectivity with next-gen digital services</p>
         <button onclick="scrollToProducts()">Get Started</button>
     </div>
-
-    <div>
-        <h2>🚀 5G Ready</h2>
-    </div>
+    <div><h2>🚀 5G Ready</h2></div>
 </div>
 
 <!-- PRODUCTS -->
@@ -203,7 +176,6 @@ input {
 <!-- PAYMENT PANEL -->
 <div class="payment" id="payment">
 
-    <!-- CLOSE BUTTON -->
     <div style="text-align:right;">
         <span onclick="closePayment()" style="cursor:pointer;font-size:20px;">❌</span>
     </div>
@@ -213,7 +185,17 @@ input {
     <p id="plan"></p>
     <p id="price"></p>
 
-    <input id="promo" placeholder="Promo Code">
+    <!-- PROMO DROPDOWN -->
+    <h3>Apply Promo</h3>
+
+    <select id="promoDropdown" onchange="selectPromo()">
+        <option value="">-- Select Promo Code --</option>
+        <option value="NEXT20">NEXT20 - 20% OFF</option>
+        <option value="SAVE50">SAVE50 - Flat 50 SAR OFF</option>
+        <option value="WELCOME10">WELCOME10 - 10% OFF</option>
+    </select>
+
+    <input id="promo" placeholder="Or Enter Promo Code">
     <button onclick="applyPromo()">Apply</button>
     <p id="msg"></p>
 
@@ -222,8 +204,6 @@ input {
     <input placeholder="CVV">
 
     <button onclick="pay()">Pay Now</button><br><br>
-
-    <!-- CANCEL BUTTON -->
     <button onclick="closePayment()">Cancel</button>
 </div>
 
@@ -283,13 +263,31 @@ function closePayment(){
     document.getElementById("payment").style.display="none";
 }
 
+function selectPromo(){
+    let selected = document.getElementById("promoDropdown").value;
+    document.getElementById("promo").value = selected;
+}
+
 function applyPromo(){
-    if(document.getElementById("promo").value==="NEXT20"){
-        price *= 0.8;
+    let code = document.getElementById("promo").value;
+
+    if(code==="NEXT20"){
+        price = price * 0.8;
         document.getElementById("msg").innerText="20% Discount Applied!";
-    } else {
+    }
+    else if(code==="SAVE50"){
+        price = price - 50;
+        document.getElementById("msg").innerText="Flat 50 SAR Discount Applied!";
+    }
+    else if(code==="WELCOME10"){
+        price = price * 0.9;
+        document.getElementById("msg").innerText="10% Discount Applied!";
+    }
+    else {
         document.getElementById("msg").innerText="Invalid Code";
     }
+
+    document.getElementById("price").innerText = "Price: SAR " + price;
 }
 
 function pay(){
