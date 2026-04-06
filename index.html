@@ -72,7 +72,7 @@ body {
     cursor:pointer;
 }
 
-/* PRODUCT SIDEBAR */
+/* PRODUCTS */
 .products {
     display:flex;
     padding:40px;
@@ -122,6 +122,7 @@ button {
     border:none;
     border-radius:20px;
     color:white;
+    cursor:pointer;
 }
 
 /* PAYMENT PANEL */
@@ -134,12 +135,22 @@ button {
     height:100%;
     background:#111827;
     padding:20px;
+    box-shadow:-5px 0 15px rgba(0,0,0,0.5);
+    animation: slideIn 0.3s ease;
+}
+
+/* Animation */
+@keyframes slideIn {
+    from { right:-350px; }
+    to { right:0; }
 }
 
 input {
     width:100%;
     padding:8px;
     margin:5px 0;
+    border-radius:5px;
+    border:none;
 }
 </style>
 </head>
@@ -189,8 +200,14 @@ input {
 
 </div>
 
-<!-- PAYMENT -->
+<!-- PAYMENT PANEL -->
 <div class="payment" id="payment">
+
+    <!-- CLOSE BUTTON -->
+    <div style="text-align:right;">
+        <span onclick="closePayment()" style="cursor:pointer;font-size:20px;">❌</span>
+    </div>
+
     <h2>Checkout</h2>
 
     <p id="plan"></p>
@@ -204,7 +221,10 @@ input {
     <input placeholder="Expiry">
     <input placeholder="CVV">
 
-    <button onclick="pay()">Pay Now</button>
+    <button onclick="pay()">Pay Now</button><br><br>
+
+    <!-- CANCEL BUTTON -->
+    <button onclick="closePayment()">Cancel</button>
 </div>
 
 <script>
@@ -259,6 +279,10 @@ function buy(p, pr){
     document.getElementById("payment").style.display="block";
 }
 
+function closePayment(){
+    document.getElementById("payment").style.display="none";
+}
+
 function applyPromo(){
     if(document.getElementById("promo").value==="NEXT20"){
         price *= 0.8;
@@ -270,6 +294,7 @@ function applyPromo(){
 
 function pay(){
     alert("Payment Successful 🚀");
+    closePayment();
 }
 
 </script>
