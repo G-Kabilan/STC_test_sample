@@ -6,122 +6,106 @@
 <title>STC Telecom</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: #f5f7fa;
-}
+body { font-family: Arial; margin:0; background:#f4f4f4; }
 
 /* Navbar */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 40px;
-    background: #4B0082;
-    color: white;
+    background:#4B0082;
+    color:white;
+    padding:15px 30px;
 }
 
-/* Hero */
-.hero {
-    background: linear-gradient(to right, #4B0082, #8A2BE2);
-    color: white;
-    text-align: center;
-    padding: 60px;
-}
+/* Sections */
+.section { padding:40px; text-align:center; }
 
-/* Plans */
-.plans {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 40px;
-    flex-wrap: wrap;
-}
-
+/* Cards */
 .card {
-    background: white;
-    padding: 20px;
-    width: 250px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    display:inline-block;
+    background:white;
+    padding:20px;
+    margin:15px;
+    border-radius:10px;
+    width:250px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
 button {
-    padding: 10px 20px;
-    background: purple;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
+    padding:10px 15px;
+    background:purple;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
 }
+
+/* Hidden */
+.hidden { display:none; }
 
 /* Payment Modal */
 .modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
+    display:none;
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.5);
 }
 
 .modal-content {
-    background: white;
-    padding: 30px;
-    margin: 10% auto;
-    width: 300px;
-    border-radius: 10px;
-    text-align: center;
+    background:white;
+    width:300px;
+    margin:10% auto;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Navbar -->
 <div class="navbar">
     <h2>STC Telecom</h2>
 </div>
 
-<!-- Hero -->
-<div class="hero">
-    <h1>Best Telecom Plans</h1>
-    <p>Choose your plan and pay instantly</p>
+<!-- MAIN PRODUCTS -->
+<div class="section" id="mainProducts">
+    <h2>Select Product</h2>
+
+    <div class="card">
+        <h3>Mobile Plans</h3>
+        <button onclick="showPlans('mobile')">Explore</button>
+    </div>
+
+    <div class="card">
+        <h3>Internet Packages</h3>
+        <button onclick="showPlans('internet')">Explore</button>
+    </div>
 </div>
 
-<!-- Plans -->
-<div class="plans">
-
-    <div class="card">
-        <h2>Basic</h2>
-        <p>1GB/day</p>
-        <h3>SAR 50</h3>
-        <button onclick="buy('Basic',50)">Buy Now</button>
-    </div>
-
-    <div class="card">
-        <h2>Standard</h2>
-        <p>2GB/day</p>
-        <h3>SAR 100</h3>
-        <button onclick="buy('Standard',100)">Buy Now</button>
-    </div>
-
-    <div class="card">
-        <h2>Premium</h2>
-        <p>Unlimited Data</p>
-        <h3>SAR 200</h3>
-        <button onclick="buy('Premium',200)">Buy Now</button>
-    </div>
-
+<!-- SUB PLANS -->
+<div class="section hidden" id="plansSection">
+    <h2>Select Your Plan</h2>
+    <div id="plans"></div>
+    <br>
+    <button onclick="goBack()">⬅ Back</button>
 </div>
 
-<!-- Payment Popup -->
+<!-- PAYMENT MODAL -->
 <div id="paymentModal" class="modal">
     <div class="modal-content">
         <h2>Payment</h2>
-        <p id="plan"></p>
-        <p id="price"></p>
 
+        <p id="selectedPlan"></p>
+        <p id="selectedPrice"></p>
+
+        <!-- Promo -->
+        <input type="text" id="promo" placeholder="Enter Promo Code"><br><br>
+        <button onclick="applyPromo()">Apply Promo</button>
+        <p id="discountMsg"></p>
+
+        <br>
+
+        <!-- Card -->
         <input type="text" placeholder="Card Number"><br><br>
         <input type="text" placeholder="Expiry"><br><br>
         <input type="text" placeholder="CVV"><br><br>
@@ -132,21 +116,93 @@ button {
 </div>
 
 <script>
+
+let currentPrice = 0;
+
+// Show plans based on product
+function showPlans(type) {
+    document.getElementById("mainProducts").classList.add("hidden");
+    document.getElementById("plansSection").classList.remove("hidden");
+
+    let plansHTML = "";
+
+    if(type === "mobile") {
+        plansHTML = `
+        <div class="card">
+            <h3>Basic Mobile</h3>
+            <p>1GB/day</p>
+            <p>SAR 50</p>
+            <button onclick="buy('Basic Mobile',50)">Select</button>
+        </div>
+
+        <div class="card">
+            <h3>Premium Mobile</h3>
+            <p>Unlimited</p>
+            <p>SAR 120</p>
+            <button onclick="buy('Premium Mobile',120)">Select</button>
+        </div>`;
+    } else {
+        plansHTML = `
+        <div class="card">
+            <h3>Home Internet</h3>
+            <p>100 Mbps</p>
+            <p>SAR 200</p>
+            <button onclick="buy('Home Internet',200)">Select</button>
+        </div>
+
+        <div class="card">
+            <h3>Fiber Pro</h3>
+            <p>500 Mbps</p>
+            <p>SAR 350</p>
+            <button onclick="buy('Fiber Pro',350)">Select</button>
+        </div>`;
+    }
+
+    document.getElementById("plans").innerHTML = plansHTML;
+}
+
+// Back button
+function goBack() {
+    document.getElementById("plansSection").classList.add("hidden");
+    document.getElementById("mainProducts").classList.remove("hidden");
+}
+
+// Select plan
 function buy(plan, price) {
-    document.getElementById("plan").innerText = "Plan: " + plan;
-    document.getElementById("price").innerText = "Price: SAR " + price;
+    currentPrice = price;
+    document.getElementById("selectedPlan").innerText = "Plan: " + plan;
+    document.getElementById("selectedPrice").innerText = "Price: SAR " + price;
 
     document.getElementById("paymentModal").style.display = "block";
 }
 
+// Apply promo
+function applyPromo() {
+    let code = document.getElementById("promo").value;
+
+    if(code === "STC10") {
+        let discount = currentPrice * 0.1;
+        currentPrice -= discount;
+
+        document.getElementById("discountMsg").innerText =
+            "Promo Applied! New Price: SAR " + currentPrice;
+    } else {
+        document.getElementById("discountMsg").innerText =
+            "Invalid Promo Code";
+    }
+}
+
+// Close modal
 function closeModal() {
     document.getElementById("paymentModal").style.display = "none";
 }
 
+// Payment
 function pay() {
     alert("Payment Successful ✅");
     closeModal();
 }
+
 </script>
 
 </body>
